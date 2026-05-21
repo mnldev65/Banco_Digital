@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'routes.dart'; 
+import 'routes.dart';
 
 void main() {
-  runApp(const MeuBancoApp());
+  runApp(MeuBancoApp());
 }
 
 class MeuBancoApp extends StatelessWidget {
@@ -13,10 +13,8 @@ class MeuBancoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Banco Digital',
       debugShowCheckedModeBanner: false,
-      
-      initialRoute: '/login', 
-      
-      routes: AppRotas.obterRotas(), 
+      initialRoute: '/login',
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }

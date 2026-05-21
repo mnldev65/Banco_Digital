@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
-import 'telas_banco/login.dart';
-import 'telas_banco/home.dart';
-import 'telas_banco/cotacao.dart';
-import 'telas_banco/transferencia.dart';
+import 'package:banco_digital/telas_banco/login.dart';
+import 'package:banco_digital/telas_banco/home.dart';
+import 'package:banco_digital/telas_banco/cotacao.dart';
+import 'package:banco_digital/telas_banco/transferencia.dart';
 
-class AppRotas {
-  static Map<String, WidgetBuilder> obterRotas() {
-    return {
-      '/login': (context) => const LoginTela(),
-      '/home': (context) => const Home(),
-      '/cotacao': (context) => const TelaCotacao(),
-      '/transferencia': (context) => const Transferencia(),
-    };
+class AppRoutes {
+  static const String login = '/login';
+  static const String home = '/home';
+  static const String cotacao = '/cotacao';
+  static const String transferencia = '/transferencia';
+
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case login:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      
+      case home:
+        final args = settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => HomeScreen(
+            nomeUsuario: args?['nomeUsuario'] ?? 'Usuário',
+            saldo: args?['saldo'] ?? 1250.75,
+          ),
+        );
+      
+      case cotacao:
+        return MaterialPageRoute(builder: (_) => const CotacaoScreen());
+      
+      case transferencia:
+        return MaterialPageRoute(builder: (_) => const TransferenciaScreen());
+      
+      default:
+        return MaterialPageRoute(builder: (_) => const Scaffold(
+          body: Center(child: Text('Rota não encontrada')),
+        ));
+    }
   }
 }
