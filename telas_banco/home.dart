@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  final String nomeUsuario;
+  final double saldo;
+  
+  const Home({
+    super.key,
+    required this.nomeUsuario,
+    required this.saldo,
+  });
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

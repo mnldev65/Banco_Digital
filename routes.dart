@@ -13,22 +13,22 @@ class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginTela());
       
       case home:
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
-          builder: (_) => HomeScreen(
+          builder: (_) => Home(
             nomeUsuario: args?['nomeUsuario'] ?? 'Usuário',
             saldo: args?['saldo'] ?? 1250.75,
           ),
         );
       
       case cotacao:
-        return MaterialPageRoute(builder: (_) => const CotacaoScreen());
+        return MaterialPageRoute(builder: (_) => const TelaCotacao());
       
       case transferencia:
-        return MaterialPageRoute(builder: (_) => const TransferenciaScreen());
+        return MaterialPageRoute(builder: (_) => const Transferencia());
       
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold(
