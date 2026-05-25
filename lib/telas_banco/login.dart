@@ -9,9 +9,7 @@ class LoginTela extends StatelessWidget {
       appBar: AppBar(title: const Text('Tela de Login')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-             
-          },
+          onPressed: () {},
           child: const Text('Ir para Home'),
         ),
       ),

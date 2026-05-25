@@ -14,7 +14,7 @@ class AppRoutes {
     switch (settings.name) {
       case login:
         return MaterialPageRoute(builder: (_) => const LoginTela());
-      
+
       case home:
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
@@ -23,17 +23,18 @@ class AppRoutes {
             saldo: args?['saldo'] ?? 1250.75,
           ),
         );
-      
+
       case cotacao:
         return MaterialPageRoute(builder: (_) => const TelaCotacao());
-      
+
       case transferencia:
-        return MaterialPageRoute(builder: (_) => const TransferenciaPage());
-      
+        return MaterialPageRoute(builder: (_) => const TelaTransferencia());
+
       default:
-        return MaterialPageRoute(builder: (_) => const Scaffold(
-          body: Center(child: Text('Rota não encontrada')),
-        ));
+        return MaterialPageRoute(
+            builder: (_) => const Scaffold(
+                  body: Center(child: Text('Rota não encontrada')),
+                ));
     }
   }
 }

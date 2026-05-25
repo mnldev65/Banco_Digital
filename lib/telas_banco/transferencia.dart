@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TransferenciaPage extends StatefulWidget {
-  const TransferenciaPage({super.key});
+class TelaTransferencia extends StatefulWidget {
+  const TelaTransferencia({super.key});
 
   @override
-  State<TransferenciaPage> createState() => _TransferenciaPageState();
+  State<TelaTransferencia> createState() => _TelaTransferenciaState();
 }
 
-class _TransferenciaPageState extends State<TransferenciaPage> {
+class _TelaTransferenciaState extends State<TelaTransferencia> {
   final _formKey = GlobalKey<FormState>();
   final _destinatarioController = TextEditingController();
   final _valorController = TextEditingController();
@@ -16,9 +16,10 @@ class _TransferenciaPageState extends State<TransferenciaPage> {
     if (_formKey.currentState!.validate()) {
       String destinatario = _destinatarioController.text;
       double valor = double.parse(_valorController.text);
-      
-      print("Dados para o Firestore: {'destinatario': $destinatario, 'valor': $valor}");
-      
+
+      print(
+          "Dados para o Firestore: {'destinatario': $destinatario, 'valor': $valor}");
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Transferência para $destinatario realizada!')),
       );
@@ -60,12 +61,14 @@ class _TransferenciaPageState extends State<TransferenciaPage> {
                   labelText: 'Valor (R\$)',
                   border: OutlineInputBorder(),
                 ),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira um valor';
                   }
-                  if (double.tryParse(value) == null || double.parse(value) <= 0) {
+                  if (double.tryParse(value) == null ||
+                      double.parse(value) <= 0) {
                     return 'Insira um valor válido maior que zero';
                   }
                   return null;
