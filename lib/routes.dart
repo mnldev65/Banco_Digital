@@ -29,7 +29,7 @@ class AppRoutes {
         );
       
       case cotacao:
-        return MaterialPageRoute(builder: (_) => const TelaCotacao());
+        return MaterialPageRoute(builder: (_) => const Cotacao());
       
       case transferencia:
         return MaterialPageRoute(builder: (_) => const TransferenciaPage());
