@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TransferenciaPage extends StatefulWidget {
   const TransferenciaPage({super.key});
@@ -12,16 +13,29 @@ class _TransferenciaPageState extends State<TransferenciaPage> {
   final _destinatarioController = TextEditingController();
   final _valorController = TextEditingController();
 
-  void _realizarTransferencia() {
+  void _realizarTransferencia() async {
     if (_formKey.currentState!.validate()) {
       String destinatario = _destinatarioController.text;
       double valor = double.parse(_valorController.text);
-      
-      print("Dados para o Firestore: {'destinatario': $destinatario, 'valor': $valor}");
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Transferência para $destinatario realizada!')),
-      );
+
+      try {
+        await FirebaseFirestore.instance.collection('transferencias').add({
+          'destinatario': destinatario,
+          'valor': valor,
+          'data': DateTime.now().toIso8601String(),
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Transferência para $destinatario salva no Firestore!')),
+        );
+
+        _destinatarioController.clear();
+        _valorController.clear();
+      } catch (erro) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro ao salvar no banco: $erro')),
+        );
+      }
     }
   }
 

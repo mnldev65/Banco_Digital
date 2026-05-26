@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'servicos/firebase_servico.dart';
 import 'routes.dart';
 
-void main() {
-  runApp(MeuBancoApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseServico.inicializar();
+  
+  runApp(const MeuBancoApp());
 }
 
 class MeuBancoApp extends StatelessWidget {
