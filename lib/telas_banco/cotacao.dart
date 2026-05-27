@@ -17,7 +17,7 @@ class _CotacaoState extends State<Cotacao> {
   double dolar = 0;
   double euro = 0;
 
-  final api = Cotacao();
+  final api = CurrencyService();
 
   void realChanged(String text) {
 
