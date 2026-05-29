@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TransferenciaPage extends StatefulWidget {
-  const TransferenciaPage({super.key});
+class TelaTransferencia extends StatefulWidget {
+  const TelaTransferencia({super.key});
 
   @override
-  State<TransferenciaPage> createState() => _TransferenciaPageState();
+  State<TelaTransferencia> createState() => _TelaTransferenciaState();
 }
 
-class _TransferenciaPageState extends State<TransferenciaPage> {
+class _TelaTransferenciaState extends State<TelaTransferencia> {
   final _formKey = GlobalKey<FormState>();
+
   final _destinatarioController = TextEditingController();
   final _valorController = TextEditingController();
 
-  void _realizarTransferencia() async {
+  Future<void> _realizarTransferencia() async {
     if (_formKey.currentState!.validate()) {
       String destinatario = _destinatarioController.text;
+
       double valor = double.parse(_valorController.text);
 
       try {
@@ -26,14 +28,22 @@ class _TransferenciaPageState extends State<TransferenciaPage> {
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Transferência para $destinatario salva no Firestore!')),
+          SnackBar(
+            content: Text(
+              'Transferência para $destinatario realizada com sucesso!',
+            ),
+            backgroundColor: Colors.green,
+          ),
         );
 
         _destinatarioController.clear();
         _valorController.clear();
       } catch (erro) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erro ao salvar no banco: $erro')),
+          SnackBar(
+            content: Text('Erro ao salvar transferência: $erro'),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     }
@@ -42,59 +52,118 @@ class _TransferenciaPageState extends State<TransferenciaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
         title: const Text('Nova Transferência'),
         backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
         centerTitle: true,
+        elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.account_balance_wallet,
+                      size: 60,
+                      color: Colors.green[700],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Realize sua transferência',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green[800],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
               TextFormField(
                 controller: _destinatarioController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Nome do Destinatário',
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o nome do destinatário';
                   }
+
                   return null;
                 },
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _valorController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Valor (R\$)',
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.attach_money),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira um valor';
                   }
-                  if (double.tryParse(value) == null || double.parse(value) <= 0) {
+
+                  if (double.tryParse(value) == null ||
+                      double.parse(value) <= 0) {
                     return 'Insira um valor válido maior que zero';
                   }
+
                   return null;
                 },
               ),
-              const SizedBox(height: 24.0),
-              ElevatedButton(
+              const SizedBox(height: 30),
+              ElevatedButton.icon(
                 onPressed: _realizarTransferencia,
+                icon: const Icon(Icons.send, color: Colors.white),
+                label: const Text(
+                  'Enviar Transferência',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                ),
-                child: const Text(
-                  'Enviar Transferência',
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 5,
                 ),
               ),
             ],

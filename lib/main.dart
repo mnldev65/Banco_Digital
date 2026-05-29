@@ -4,8 +4,9 @@ import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await FirebaseServico.inicializar();
-  
+
   runApp(const MeuBancoApp());
 }
 

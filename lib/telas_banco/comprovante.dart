@@ -5,14 +5,14 @@ class ComprovantePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> dados = 
+    final Map<String, dynamic> dados =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
     String destinatario = dados['destinatario'] ?? 'Desconhecido';
     double valor = (dados['valor'] as num?)?.toDouble() ?? 0.0;
     String dataIso = dados['data'] ?? '';
-    
-    String dataFormatada = dataIso.isNotEmpty 
+
+    String dataFormatada = dataIso.isNotEmpty
         ? dataIso.substring(0, 10).split('-').reversed.join('/')
         : 'Sem data';
 
@@ -26,7 +26,8 @@ class ComprovantePage extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         child: Card(
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -45,27 +46,29 @@ class ComprovantePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const Divider(height: 32, thickness: 1.2),
-                
-                const Text('Destinatário', style: TextStyle(color: Colors.grey)),
+                const Text('Destinatário',
+                    style: TextStyle(color: Colors.grey)),
                 Text(
                   destinatario,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 16),
-                
                 const Text('Valor', style: TextStyle(color: Colors.grey)),
                 Text(
                   'R\$ ${valor.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.green),
+                  style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green),
                 ),
                 const SizedBox(height: 16),
-                
-                const Text('Data da Operação', style: TextStyle(color: Colors.grey)),
+                const Text('Data da Operação',
+                    style: TextStyle(color: Colors.grey)),
                 Text(
                   dataFormatada,
                   style: const TextStyle(fontSize: 16),
                 ),
-                
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
