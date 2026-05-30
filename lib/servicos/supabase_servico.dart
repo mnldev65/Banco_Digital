@@ -5,8 +5,9 @@ class SupabaseServico {
   // 🔑  Cole aqui as suas credenciais do painel do Supabase:
   //     Project Settings → API
   // ─────────────────────────────────────────────────────────────
-  static const String _supabaseUrl = 'SUA_SUPABASE_URL';
-  static const String _supabaseAnonKey = 'SUA_SUPABASE_ANON_KEY';
+  static const String _supabaseUrl = 'https://umnwmsfsrwomlywaaqix.supabase.co';
+  static const String _supabaseAnonKey =
+      'sb_publishable_k28obsEz6glIhu8CDQk9aw_SIrEzxPF';
 
   static Future<void> inicializar() async {
     await Supabase.initialize(
