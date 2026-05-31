@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "993826043640",
+    "project_id": "banco-digital-f56df",
+    "storage_bucket": "banco-digital-f56df.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993826043640:android:2b19f616c7563f74e02d0d",
+        "android_client_info": {
+          "package_name": "com.example.banco_digital_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2iACxGICBR4W8RqO6RcmSctOBDgwNMUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
