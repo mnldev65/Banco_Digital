@@ -22,7 +22,6 @@ class _LoginTelaState extends State<LoginTela> {
     super.dispose();
   }
 
-  // ── Helpers ────────────────────────────────────────────────────
 
   String _traduzirErro(String msg) {
     if (msg.contains('Invalid login credentials')) {
@@ -46,7 +45,6 @@ class _LoginTelaState extends State<LoginTela> {
     ));
   }
 
-  // ── Ação principal ─────────────────────────────────────────────
 
   Future<void> _fazerLogin() async {
     if (!_formKey.currentState!.validate()) return;
@@ -66,7 +64,6 @@ class _LoginTelaState extends State<LoginTela> {
         return;
       }
 
-      // Busca nome e saldo do perfil real no banco
       final perfil = await Supabase.instance.client
           .from('perfis')
           .select('nome, saldo')
@@ -88,7 +85,6 @@ class _LoginTelaState extends State<LoginTela> {
     }
   }
 
-  // ── UI ─────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +99,7 @@ class _LoginTelaState extends State<LoginTela> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Logo
+                  
                   Icon(Icons.account_balance, size: 80, color: Colors.blue[800]),
                   const SizedBox(height: 20),
                   Text(
@@ -121,7 +117,7 @@ class _LoginTelaState extends State<LoginTela> {
                   ),
                   const SizedBox(height: 40),
 
-                  // E-mail
+                  
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -146,7 +142,7 @@ class _LoginTelaState extends State<LoginTela> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Senha
+                  
                   TextFormField(
                     controller: _senhaController,
                     obscureText: !_senhaVisivel,
@@ -174,7 +170,7 @@ class _LoginTelaState extends State<LoginTela> {
                     },
                   ),
 
-                  // Esqueci senha
+                  
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -186,7 +182,7 @@ class _LoginTelaState extends State<LoginTela> {
                   ),
                   const SizedBox(height: 8),
 
-                  // Botão Entrar
+
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -211,7 +207,7 @@ class _LoginTelaState extends State<LoginTela> {
                   ),
                   const SizedBox(height: 24),
 
-                  // Link cadastro
+            
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

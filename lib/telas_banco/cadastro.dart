@@ -63,7 +63,6 @@ class _CadastroTelaState extends State<CadastroTela> {
 
       final uid = res.user?.id;
       if (uid != null) {
-        // Cria o perfil na tabela 'perfis'
         await Supabase.instance.client.from('perfis').insert({
           'id': uid,
           'nome': _nomeController.text.trim(),
@@ -137,7 +136,6 @@ class _CadastroTelaState extends State<CadastroTela> {
                     style: TextStyle(fontSize: 14, color: Colors.grey[600])),
                 const SizedBox(height: 30),
 
-                // Nome completo
                 TextFormField(
                   controller: _nomeController,
                   textCapitalization: TextCapitalization.words,
@@ -161,7 +159,6 @@ class _CadastroTelaState extends State<CadastroTela> {
                 ),
                 const SizedBox(height: 16),
 
-                // E-mail
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -186,7 +183,6 @@ class _CadastroTelaState extends State<CadastroTela> {
                 ),
                 const SizedBox(height: 16),
 
-                // Senha
                 TextFormField(
                   controller: _senhaController,
                   obscureText: !_senhaVisivel,
@@ -216,7 +212,6 @@ class _CadastroTelaState extends State<CadastroTela> {
                 ),
                 const SizedBox(height: 16),
 
-                // Confirmar senha
                 TextFormField(
                   controller: _confirmarSenhaController,
                   obscureText: !_confirmarSenhaVisivel,
@@ -245,7 +240,6 @@ class _CadastroTelaState extends State<CadastroTela> {
                 ),
                 const SizedBox(height: 30),
 
-                // Botão
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
