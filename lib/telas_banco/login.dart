@@ -107,7 +107,7 @@ class _LoginTelaState extends State<LoginTela> {
                   Icon(Icons.account_balance, size: 80, color: Colors.blue[800]),
                   const SizedBox(height: 20),
                   Text(
-                    'Banco Digital',
+                    'NeoBank',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,

@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Banco Digital'),
+        title: const Text('NeoBank'),
         backgroundColor: Colors.blue[800],
         foregroundColor: Colors.white,
         elevation: 0,
